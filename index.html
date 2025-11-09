@@ -416,6 +416,7 @@
         const pauseIcon = document.getElementById('pauseIcon');
         let isPlaying = false;
         let musicStarted = false;
+        let checkInterval = null;
 
         // Configurer la musique pour jouer de 5 à 25 secondes
         const START_TIME = 5;
@@ -431,6 +432,14 @@
                 musicButton.classList.add('playing');
                 playIcon.style.display = 'none';
                 pauseIcon.style.display = 'block';
+                
+                // Vérifier toutes les 100ms si on a atteint 25 secondes
+                if (checkInterval) clearInterval(checkInterval);
+                checkInterval = setInterval(() => {
+                    if (music.currentTime >= END_TIME) {
+                        music.currentTime = START_TIME;
+                    }
+                }, 100);
             }).catch(error => {
                 console.log('Lecture bloquée:', error);
             });
@@ -443,6 +452,10 @@
             musicButton.classList.remove('playing');
             playIcon.style.display = 'block';
             pauseIcon.style.display = 'none';
+            if (checkInterval) {
+                clearInterval(checkInterval);
+                checkInterval = null;
+            }
         }
 
         // Bouton de contrôle
@@ -454,12 +467,6 @@
             }
         });
 
-        // Vérifier si on a atteint 25 secondes et recommencer à 5 secondes
-        music.addEventListener('timeupdate', function() {
-            if (music.currentTime >= END_TIME) {
-                music.currentTime = START_TIME;
-            }
-        });
 
         // Lancer la musique au premier clic/touch sur la page
         function startMusicOnInteraction() {
