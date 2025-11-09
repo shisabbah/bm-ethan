@@ -2,7 +2,7 @@
 // Ce script recevra les données du formulaire et les enregistrera dans Google Sheets
 
 // L'ID de votre Google Sheet (récupérez-le dans l'URL de votre feuille)
-const SHEET_ID = 'VOTRE_ID_GOOGLE_SHEET_ICI';
+const SHEET_ID = '1eN0J2swJg10KcbbFIrr9qsejWe-tykI1Y4ggHOWzSrM';
 const SHEET_NAME = 'Réponses RSVP';
 
 // Fonction principale qui reçoit les données POST
