@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Mitsvah - Ethan Simon Alliel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #f5f1e8 0%, #ebe4d1 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: linear-gradient(to bottom, #faf8f3 0%, #f8f6f0 100%);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .invitation-card {
+            padding: 0;
+            text-align: center;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .invitation-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #6b8e6f, transparent);
+            margin: 40px auto;
+        }
+
+        /* Formulaire RSVP */
+        .rsvp-section {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-top: 1px solid #e0d9c8;
+        }
+
+        .rsvp-title {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .rsvp-subtitle {
+            text-align: center;
+            font-size: 17px;
+            color: #6b8e6f;
+            margin-bottom: 35px;
+            font-style: italic;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            border: 2px solid #e0d9c8;
+            border-radius: 4px;
+            background: #faf8f3;
+            color: #2c2c2c;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #6b8e6f;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(107, 142, 111, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #6b8e6f;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #6b8e6f 0%, #5a7a5e 100%);
+            color: #ffffff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 35px auto 0;
+            box-shadow: 0 4px 15px rgba(107, 142, 111, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 142, 111, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .required {
+            color: #d9534f;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+
+            .invitation-card {
+                padding: 0;
+            }
+
+            .invitation-image {
+                width: 100%;
+            }
+
+            .rsvp-section {
+                padding: 35px 25px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Carte d'invitation originale -->
+        <div class="invitation-card">
+            <img src="bm-ethan.png" alt="Invitation Bar Mitsvah Ethan Simon Alliel" class="invitation-image">
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Formulaire RSVP -->
+        <div class="rsvp-section">
+            <h2 class="rsvp-title">FORMULAIRE</h2>
+            <p class="rsvp-subtitle">Merci de confirmer votre présence avant le 15 décembre 2025</p>
+
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="nom">Nom <span class="required">*</span></label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="prenom">Prénom <span class="required">*</span></label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Présence <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="oui" name="presence" value="Oui" required>
+                            <label for="oui">Je serai présent(e)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="non" name="presence" value="Non">
+                            <label for="non">Je ne pourrai pas venir</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adultes">Nombre d'adultes <span class="required">*</span></label>
+                    <input type="number" id="adultes" name="adultes" min="0" max="20" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="enfants">Nombre d'enfants <span class="required">*</span></label>
+                    <input type="number" id="enfants" name="enfants" min="0" max="20" value="0" required>
+                    <p style="font-size: 14px; color: #d9534f; margin-top: 8px; font-style: italic;">
+                        * Les enfants de moins de 10 ans ne peuvent pas participer
+                    </p>
+                </div>
+
+                <button type="submit" class="submit-btn">ENVOYER MA RÉPONSE</button>
+
+                <div id="formMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // IMPORTANT: Remplacez cette URL par l'URL de votre Google Apps Script Web App
+        const GOOGLE_SCRIPT_URL = 'VOTRE_URL_GOOGLE_APPS_SCRIPT_ICI';
+
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('.submit-btn');
+            const messageDiv = document.getElementById('formMessage');
+            
+            // Désactiver le bouton pendant l'envoi
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'ENVOI EN COURS...';
+            messageDiv.style.display = 'none';
+
+            // Récupérer les données du formulaire
+            const formData = {
+                nom: document.getElementById('nom').value,
+                prenom: document.getElementById('prenom').value,
+                presence: document.querySelector('input[name="presence"]:checked').value,
+                adultes: document.getElementById('adultes').value,
+                enfants: document.getElementById('enfants').value,
+                timestamp: new Date().toLocaleString('fr-FR')
+            };
+
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Note: avec mode: 'no-cors', on ne peut pas lire la réponse
+                // mais on considère que l'envoi a réussi si aucune erreur n'est levée
+                
+                messageDiv.className = 'message success';
+                messageDiv.textContent = '✓ Merci ! Votre réponse a été enregistrée avec succès.';
+                messageDiv.style.display = 'block';
+                
+                // Réinitialiser le formulaire
+                e.target.reset();
+                
+            } catch (error) {
+                console.error('Erreur:', error);
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '✗ Une erreur est survenue. Veuillez réessayer ou nous contacter directement.';
+                messageDiv.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'ENVOYER MA RÉPONSE';
+                
+                // Faire défiler jusqu'au message
+                messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+
+        // Désactiver les champs si "Non" est sélectionné
+        document.querySelectorAll('input[name="presence"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const adultesField = document.getElementById('adultes');
+                const enfantsField = document.getElementById('enfants');
+                
+                if (this.value === 'Non') {
+                    adultesField.value = '0';
+                    adultesField.disabled = true;
+                    enfantsField.value = '0';
+                    enfantsField.disabled = true;
+                } else {
+                    adultesField.value = '1';
+                    adultesField.disabled = false;
+                    enfantsField.value = '0';
+                    enfantsField.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
