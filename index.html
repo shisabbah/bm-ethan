@@ -225,57 +225,9 @@
             color: #d9534f;
         }
 
-        /* Bouton de musique */
+        /* Bouton de musique caché */
         .music-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #6b8e6f 0%, #5a7a5e 100%);
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(107, 142, 111, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .music-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(107, 142, 111, 0.5);
-        }
-
-        .music-button svg {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
-
-        .music-button.playing svg {
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        @media (max-width: 768px) {
-            .music-button {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .music-button svg {
-                width: 24px;
-                height: 24px;
-            }
+            display: none;
         }
 
         @media (max-width: 768px) {
